@@ -143,6 +143,39 @@ Agent 会自动选择合适的工具（读文字走 OCR，看画面走 VLM）。
 | `qwen3-vl-plus` | 质量更高，稍慢稍贵 |
 | `qwen-vl-ocr` | 纯文字识别专用，比本地 OCR 更强（需联网） |
 
+## Claude Code / MCP 使用
+
+本仓库附带一个零依赖的 **MCP server**（`mcp/server.js`），让 **Claude Code**（以及任何支持 MCP 的客户端）也能用这两个工具——即使你的 Claude Code 接的是不支持视觉的模型（如 DeepSeek）。
+
+### 接入 Claude Code
+
+```sh
+# 全局接入（所有项目可用）
+claude mcp add dsh-vision -- node /path/to/dsh-vision/mcp/server.js
+
+# 或者只给当前项目（在项目根目录建 .mcp.json）：
+# {
+#   "mcpServers": {
+#     "dsh-vision": {
+#       "command": "node",
+#       "args": ["/path/to/dsh-vision/mcp/server.js"],
+#       "env": { "DASHSCOPE_API_KEY": "sk-xxx" }
+#     }
+#   }
+# }
+```
+
+`describe_image` 的 API Key 读取优先级：环境变量 > `~/.dsh/.credentials.yaml`。用 `.mcp.json` 时可在 `env` 里直接配。
+
+### 验证
+
+```sh
+claude mcp list        # 应看到 dsh-vision
+claude mcp test dsh-vision   # 或直接问 Claude：看下 /path/to/xxx.png 里是什么
+```
+
+> MCP server 为纯 Node 实现（stdio JSON-RPC），无第三方依赖，Node >= 18 即可。
+
 ## 开发
 
 ```sh

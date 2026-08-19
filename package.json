@@ -1,6 +1,6 @@
 {
   "name": "@floatingsk/dsh-vision",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "为 DeepSeek Harness 提供图片理解能力：本地 OCR（macOS Vision / Windows 内置 OCR）+ 云端 VLM（多供应商，OpenAI 兼容）",
   "type": "module",
   "main": "lib/index.js",
@@ -9,6 +9,7 @@
   },
   "files": [
     "lib",
+    "mcp",
     "bin/vision-ocr.swift",
     "bin/vision-ocr.ps1",
     "README.md",
