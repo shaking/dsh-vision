@@ -21,7 +21,7 @@ DeepSeek 的模型 API 目前不支持图像输入，`read_image` 因此无法�
 
 ## 安装
 
-### 方式 A：从 npm 安装（发布后推荐）
+### 方式 A：从 npm 安装（推荐）
 
 ```sh
 dsh plugin --profile web add @floatingsk/dsh-vision
