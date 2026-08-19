@@ -1,7 +1,7 @@
 {
   "name": "@floatingsk/dsh-vision",
-  "version": "0.1.0",
-  "description": "dsh 视觉插件：本地 OCR（macOS Vision）+ 云端 VLM 图片理解（OpenAI 兼容）",
+  "version": "0.1.1",
+  "description": "为 DeepSeek Harness 提供图片理解能力：本地 OCR（macOS Vision / Windows 内置 OCR）+ 云端 VLM（多供应商，OpenAI 兼容）",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
