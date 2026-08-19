@@ -1,6 +1,6 @@
 # dsh-vision
 
-> 给 DeepSeek Harness（dsh）补上视觉能力的插件：**本地 OCR（macOS / Windows）+ 云端 VLM（多供应商）图片理解**。
+> 给 DeepSeek Harness（dsh）插件 与 Claude Code（MCP）提供视觉能力的工具：**本地 OCR（macOS / Windows）+ 云端 VLM（多供应商）图片理解**。
 
 DeepSeek 的模型 API 目前不支持图像输入，`read_image` 因此无法使用。本插件提供两个工具绕过这个限制：
 
@@ -17,6 +17,7 @@ DeepSeek 的模型 API 目前不支持图像输入，`read_image` 因此无法�
 - 🔑 **灵活取 Key**：环境变量或 `~/.dsh/.credentials.yaml`
 - 🧪 **零依赖单测**：核心逻辑用 Node 内置 `node:test` 覆盖（13 用例）
 - 🌏 **多供应商 VLM**：内置百炼 / 硅基流动 / 智谱 / 火山方舟，OpenAI 兼容可加任意家
+- 🔌 **双形态**：既是 dsh 插件，也是 MCP server（Claude Code 等 MCP 客户端直接用）
 - 🪟 **Windows 支持**：附 PowerShell OCR 后端（Windows.Media.Ocr），VLM 通道跨平台
 
 ## 安装
