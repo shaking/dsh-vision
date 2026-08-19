@@ -1,0 +1,14 @@
+# 编译缓存（swiftc clang modules）
+.cache/
+
+# 编译产物（macOS arm64 二进制，各平台自行编译）
+bin/vision-ocr
+
+# Node
+node_modules/
+
+# macOS
+.DS_Store
+
+# 临时文件
+*.log

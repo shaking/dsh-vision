@@ -1,0 +1,38 @@
+{
+  "name": "@floatingsk/dsh-vision",
+  "version": "0.1.0",
+  "description": "dsh 视觉插件：本地 OCR（macOS Vision）+ 云端 VLM 图片理解（OpenAI 兼容）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "bin/vision-ocr.swift",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "build:ocr": "swiftc -Xcc -fmodules-cache-path=\"$PWD/.cache\" -O bin/vision-ocr.swift -o bin/vision-ocr"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "vision",
+    "vlm",
+    "ocr",
+    "image"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  }
+}
