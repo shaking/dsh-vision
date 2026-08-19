@@ -1,0 +1,46 @@
+# 打 tag (v*) 时在两种 macOS 架构上编译 vision-ocr 二进制并附到 Release
+name: Build OCR Binaries
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build (${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-14 # Apple Silicon
+            arch: arm64
+          - os: macos-13 # Intel
+            arch: x86_64
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile vision-ocr (${{ matrix.arch }})
+        run: |
+          mkdir -p .cache
+          swiftc -Xcc -fmodules-cache-path="$PWD/.cache" -O bin/vision-ocr.swift -o bin/vision-ocr-${{ matrix.arch }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vision-ocr-${{ matrix.arch }}
+          path: bin/vision-ocr-${{ matrix.arch }}
+
+  release:
+    name: Attach to GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*
+          generate_release_notes: true

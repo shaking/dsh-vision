@@ -10,6 +10,7 @@
   "files": [
     "lib",
     "bin/vision-ocr.swift",
+    "bin/vision-ocr.ps1",
     "README.md",
     "LICENSE"
   ],

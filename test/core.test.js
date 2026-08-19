@@ -9,6 +9,7 @@ import {
 	extractDescription,
 	buildVLMRequestBody,
 	mimeTypeForPath,
+	resolveProvider,
 	DEFAULT_DESCRIBE_PROMPT,
 	VLM_MAX_TOKENS,
 } from "../lib/core.js";
@@ -97,4 +98,36 @@ test("mimeTypeForPath 区分 png 与其他", () => {
 	assert.equal(mimeTypeForPath("a.PNG"), "image/png");
 	assert.equal(mimeTypeForPath("a.jpg"), "image/jpeg");
 	assert.equal(mimeTypeForPath("a.webp"), "image/jpeg");
+});
+
+// ── resolveProvider（多供应商） ───────────────────────────────────────────────
+
+const multiConfig = {
+	defaultProvider: "bailian",
+	providers: {
+		bailian: { baseUrl: "https://a", model: "m1", apiKeyEnv: "K1" },
+		zhipu: { baseUrl: "https://b", model: "m2", apiKeyEnv: "K2" },
+	},
+};
+
+test("resolveProvider 缺省用 defaultProvider", () => {
+	const p = resolveProvider(multiConfig);
+	assert.equal(p.id, "bailian");
+	assert.equal(p.baseUrl, "https://a");
+});
+
+test("resolveProvider 指定供应商", () => {
+	const p = resolveProvider(multiConfig, "zhipu");
+	assert.equal(p.id, "zhipu");
+	assert.equal(p.model, "m2");
+	assert.equal(p.apiKeyEnv, "K2");
+});
+
+test("resolveProvider 未知供应商抛错并列出可用项", () => {
+	assert.throws(() => resolveProvider(multiConfig, "nope"), /未知的 VLM 供应商 "nope"/);
+	assert.throws(() => resolveProvider(multiConfig, "nope"), /bailian, zhipu/);
+});
+
+test("resolveProvider 无任何供应商时抛错", () => {
+	assert.throws(() => resolveProvider({ providers: {} }), /未配置任何供应商/);
 });
