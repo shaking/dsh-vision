@@ -1,17 +1,17 @@
 # dsh-vision
 
-> 给 DeepSeek Harness（dsh）补上视觉能力的插件：**本地 OCR + 云端 VLM 图片理解**。
+> 给 DeepSeek Harness（dsh）补上视觉能力的插件：**本地 OCR（macOS / Windows）+ 云端 VLM（多供应商）图片理解**。
 
 DeepSeek 的模型 API 目前不支持图像输入，`read_image` 因此无法使用。本插件提供两个工具绕过这个限制：
 
 | 工具 | 能力 | 成本 |
 |---|---|---|
-| `read_image_text` | 识别图片中的**文字**（macOS 本地 Vision 引擎，免费离线，中英文） | 免费 |
-| `describe_image` | 理解图片的**画面内容**（云端 VLM，OpenAI 兼容端点） | 按量付费 |
+| `read_image_text` | 识别图片中的**文字**（macOS Vision / Windows 内置 OCR，免费离线，中英文） | 免费 |
+| `describe_image` | 理解图片的**画面内容**（云端 VLM，多供应商，OpenAI 兼容端点） | 按量付费 |
 
 ## 特性
 
-- 🔒 **本地 OCR**：基于 macOS Vision.framework，图片不出本机，隐私安全
+- 🔒 **本地 OCR**：macOS 基于 Vision.framework，Windows 基于内置 OCR 引擎，图片不出本机，隐私安全
 - ☁️ **云端 VLM**：默认阿里云百炼 `qwen3-vl-flash`（快且便宜），OpenAI 兼容接口，可换成任意提供商
 - 🖼️ **自动压缩**：VLM 调用前用 `sips` 把大图压到 2048px / JPEG 85%，省钱省流量
 - 🔑 **灵活取 Key**：环境变量或 `~/.dsh/.credentials.yaml`
