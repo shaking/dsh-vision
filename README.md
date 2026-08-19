@@ -34,7 +34,22 @@ dsh plugin --profile web add @floatingsk/dsh-vision
 cp -R dsh-vision ~/.dsh/profiles/node_modules/dsh-vision
 ```
 
-### 编译 OCR 二进制（macOS 需要 Xcode Command Line Tools）（macOS 需要 Xcode Command Line Tools）
+### 方式 C：从 GitHub Release 下载预编译二进制（免编译，推荐）
+
+维护者在打 `v*` tag 时，GitHub Actions 会自动在两种 macOS 架构上编译并附到 Release：
+
+1. 打开本仓库的 **Releases** 页面，选择最新版本
+2. 按你的 Mac 架构下载：
+   - Apple Silicon（M 系列）：`vision-ocr-arm64`
+   - Intel Mac：`vision-ocr-x86_64`
+3. 放到插件目录并加执行权限：
+
+```sh
+cp vision-ocr-arm64 ~/.dsh/profiles/node_modules/dsh-vision/bin/vision-ocr
+chmod +x ~/.dsh/profiles/node_modules/dsh-vision/bin/vision-ocr
+```
+
+### 编译 OCR 二进制（macOS 需要 Xcode Command Line Tools）
 
 ```sh
 cd ~/.dsh/profiles/node_modules/dsh-vision
