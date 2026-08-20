@@ -177,6 +177,16 @@ claude mcp test dsh-vision   # 或直接问 Claude：看下 /path/to/xxx.png 里
 
 > MCP server 为纯 Node 实现（stdio JSON-RPC），无第三方依赖，Node >= 18 即可。
 
+## 剪贴板贴图（copy-to-agent）
+
+配套工具集（`clipboard/`）：**复制图片 → 直接贴给 agent**，不用手动存文件、不用给路径。
+
+```sh
+cd clipboard && bash install.sh   # 一键安装：LaunchAgent 自启 + 状态服务 + 前端提示
+```
+
+复制图片后，dsh web 右下角显示 `[图片已就绪]`，对 agent 说"看下我刚贴的图"即可。支持连续多张、Finder 多选。详见 [clipboard/README.md](./clipboard/README.md)。
+
 ## 开发
 
 ```sh
