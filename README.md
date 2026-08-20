@@ -18,6 +18,7 @@ DeepSeek 的模型 API 目前不支持图像输入，`read_image` 因此无法�
 - 🧪 **零依赖单测**：核心逻辑用 Node 内置 `node:test` 覆盖（13 用例）
 - 🌏 **多供应商 VLM**：内置百炼 / 硅基流动 / 智谱 / 火山方舟，OpenAI 兼容可加任意家
 - 🔌 **双形态**：既是 dsh 插件，也是 MCP server（Claude Code 等 MCP 客户端直接用）
+- 📋 **剪贴板贴图**：复制图片即贴给 agent（macOS 监听 + 前端提示条 + 多图支持），无需手动存文件
 - 🪟 **Windows 支持**：附 PowerShell OCR 后端（Windows.Media.Ocr），VLM 通道跨平台
 
 ## 安装
