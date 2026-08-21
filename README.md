@@ -104,15 +104,19 @@ Agent 会自动选择合适的工具（读文字走 OCR，看画面走 VLM）。
 
 ### 多供应商 VLM
 
-内置四家国内供应商，`describe_image` 可传 `provider` 参数选择（留空用 `defaultProvider`）：
+内置五家供应商（默认 DeepSeek 原生视觉，最便宜），`describe_image` 可传 `provider` 参数选择（留空用 `defaultProvider`）：
 
 ```yaml
 - insert:
     - id: dsh-vision
       name: 'dsh-vision'
       config:
-        defaultProvider: 'bailian'          # 默认供应商
+        defaultProvider: 'deepseek'         # 默认供应商
         providers:
+          deepseek:                         # DeepSeek 原生视觉（V4-Flash-Vision-Exp，约0.001元/张）
+            baseUrl: 'https://api.deepseek.com'
+            model: 'deepseek-v4-flash-vision-exp'
+            apiKeyEnv: 'DEEPSEEK_API_KEY'
           bailian:                          # 阿里云百炼
             baseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1'
             model: 'qwen3-vl-flash'         # 或 qwen3-vl-plus / qwen-vl-ocr

@@ -34,12 +34,13 @@ const ocrBin = join(__dirname, "..", "bin", "vision-ocr");
 
 // ── 内置供应商（与插件 Config 默认值一致） ──────────────────────────────────
 const PROVIDERS = {
+	deepseek: { baseUrl: "https://api.deepseek.com", model: "deepseek-v4-flash-vision-exp", apiKeyEnv: "DEEPSEEK_API_KEY" },
 	bailian: { baseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1", model: "qwen3-vl-flash", apiKeyEnv: "DASHSCOPE_API_KEY" },
 	siliconflow: { baseUrl: "https://api.siliconflow.cn/v1", model: "Qwen/Qwen2.5-VL-7B-Instruct", apiKeyEnv: "SILICONFLOW_API_KEY" },
 	zhipu: { baseUrl: "https://open.bigmodel.cn/api/paas/v4", model: "glm-4v-flash", apiKeyEnv: "ZHIPU_API_KEY" },
 	volcengine: { baseUrl: "https://ark.cn-beijing.volces.com/api/v3", model: "doubao-seed-1.6-vision", apiKeyEnv: "ARK_API_KEY" },
 };
-const DEFAULT_PROVIDER = "bailian";
+const DEFAULT_PROVIDER = "deepseek";
 
 // ── 工具实现 ─────────────────────────────────────────────────────────────────
 
